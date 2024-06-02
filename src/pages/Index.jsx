@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Container, VStack, Text, Input, Button, Textarea, IconButton, useToast, Box } from "@chakra-ui/react";
+import { Container, VStack, Text, Input, Textarea, IconButton, useToast, Box } from "@chakra-ui/react";
+import { useEffect } from "react";
+import { useColorMode } from "@chakra-ui/react";
 import { FaMicrophone, FaStop } from "react-icons/fa";
 
 const Index = () => {
@@ -46,18 +48,20 @@ const Index = () => {
   };
 
   return (
-    <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+    <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" bgImage="url('/path/to/your/background.jpg')" bgSize="cover" bgPosition="center">
       <VStack spacing={4} width="100%">
-        <Text fontSize="2xl" fontWeight="bold">
+        <Text fontSize="2xl" fontWeight="bold" color="white" textShadow="1px 1px #000">
           Audio to Text Converter
         </Text>
-        <Text>Click the button below to start recording your audio.</Text>
-        <IconButton aria-label={isRecording ? "Stop Recording" : "Start Recording"} icon={isRecording ? <FaStop /> : <FaMicrophone />} size="lg" colorScheme={isRecording ? "red" : "green"} onClick={isRecording ? handleStop : handleRecord} />
-        <Box width="100%">
+        <Text color="white" textShadow="1px 1px #000">
+          Click the button below to start recording your audio.
+        </Text>
+        <IconButton aria-label={isRecording ? "Stop Recording" : "Start Recording"} icon={isRecording ? <FaStop /> : <FaMicrophone />} size="lg" colorScheme={isRecording ? "red" : "green"} onClick={isRecording ? handleStop : handleRecord} boxShadow="lg" />
+        <Box width="100%" bg="white" p={4} borderRadius="md" boxShadow="lg">
           <Input type="file" accept="audio/*" onChange={handleFileUpload} />
           {uploadedFile && <Text mt={2}>Uploaded file: {uploadedFile.name}</Text>}
         </Box>
-        <Textarea value={transcript} placeholder="Your transcript will appear here..." readOnly height="200px" />
+        <Textarea value={transcript} placeholder="Your transcript will appear here..." readOnly height="200px" bg="white" borderRadius="md" boxShadow="lg" />
       </VStack>
     </Container>
   );
